@@ -4,3 +4,20 @@ services:
     build: ./backend_python
     ports:
       - 8000:8000
+    volumes:
+      - "./backend_python:/backend_python:rw"
+  frontend-react:
+    image: shop-frontend-react
+    build: ./frontend_react
+    ports:
+      - 3000:3000
+    volumes:
+      - "./frontend_react:/frontend_react:rw"
+  database:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - "database-data:/var/lib/postgres/data:rw"
+volumes:
+  database-data: {}
