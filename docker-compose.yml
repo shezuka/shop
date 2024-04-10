@@ -2,6 +2,9 @@ services:
   backend-python:
     image: shop-backend-python
     build: ./backend_python
+    environment:
+      - DB_HOST=database
+      - APP_SECRET=7d8a5214b93cf0d911e9225fdde775aabf4f25ca733e7bc3626dc213f40d5fd4
     ports:
       - 8000:8000
     volumes:
