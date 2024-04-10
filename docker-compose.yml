@@ -1,0 +1,6 @@
+services:
+  backend-python:
+    image: shop-backend-python
+    build: ./backend_python
+    ports:
+      - 8000:8000
