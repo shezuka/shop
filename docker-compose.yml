@@ -4,3 +4,11 @@ services:
     build: ./backend_python
     ports:
       - 8000:8000
+  database:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - "database-data:/var/lib/postgres/data:rw"
+volumes:
+  database-data: {}
