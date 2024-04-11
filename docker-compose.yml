@@ -12,6 +12,8 @@ services:
   frontend-react:
     image: shop-frontend-react
     build: ./frontend_react
+    environment:
+      - NEXT_PUBLIC_API_HOSTNAME=http://127.0.0.1:8000
     ports:
       - 3000:3000
     volumes:
