@@ -9,13 +9,36 @@ services:
       - 8000:8000
     volumes:
       - "./backend_python:/backend_python:rw"
-  frontend-react:
+  backend-php:
+    image: shop-backend-php
+    build: ./backend_php
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=database
+      - DB_PORT=5432
+      - DB_DATABASE=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+    ports:
+      - 8001:8001
+    volumes:
+      - "./backend_php:/backend_php:rw"
+  frontend-react-python:
     image: shop-frontend-react
     build: ./frontend_react
     environment:
       - NEXT_PUBLIC_API_HOSTNAME=http://127.0.0.1:8000
     ports:
       - 3000:3000
+    volumes:
+      - "./frontend_react:/frontend_react:rw"
+  frontend-react-php:
+    image: shop-frontend-react
+    build: ./frontend_react
+    environment:
+      - NEXT_PUBLIC_API_HOSTNAME=http://127.0.0.1:8001
+    ports:
+      - 3001:3000
     volumes:
       - "./frontend_react:/frontend_react:rw"
   database:
